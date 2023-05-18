@@ -21,6 +21,6 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        cd terraform-module-documentdb
+        ls
         terraform init -backend-config="key=tfstate/${REPO_NAME}.tfstate" -backend-config="bucket=terraform-tfstate-prd-2305"
         terraform plan
