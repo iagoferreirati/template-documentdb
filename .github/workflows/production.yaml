@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Clone repository
+      uses: actions/checkout@v2
+ 
+
+    - name: Terraform Apply
+      env:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        terraform init -backend-config="key=tfstate/${REPO_NAME}.tfstate" -backend-config="bucket=terraform-tfstate-prd-2305"
+        terraform plan
