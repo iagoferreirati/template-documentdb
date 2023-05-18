@@ -25,4 +25,4 @@ jobs:
         ls
         printenv
         terraform init -backend-config="key=tfstate/${REPO_NAME}.tfstate" -backend-config="bucket=terraform-tfstate-prd-2305"
-        terraform plan
+        terraform plan -var-file=vars/homologation.tfvars
